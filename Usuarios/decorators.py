@@ -1,0 +1,28 @@
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import user_passes_test
+
+def consumidor_requerido(function=None, redirect_field_name = REDIRECT_FIELD_NAME, login_url='login'):
+    '''
+    Decorator para views que compureba si el usuario loggeado
+    es un consumidor'''
+    actual_decorator = user_passes_test(
+        lambda u: u.is_active and u.is_consumidor,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
+
+def restaurante_requerido(function=None, redirect_field_name = REDIRECT_FIELD_NAME, login_url='login'):
+    '''
+    Decorator para views que compureba si el usuario loggeado
+    es un restaurante'''
+    actual_decorator = user_passes_test(
+        lambda u: u.is_active and u.is_restaurante,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
