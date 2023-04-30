@@ -8,3 +8,9 @@ User = get_user_model()
 
 class ConsumidorSignUpForm(UserCreationForm):
     email = forms
+
+class EditProfileForm(forms.ModelForm):
+    email = forms.EmailField(max_length=254)    
+    class Meta:
+        model = User
+        fields = ['email']

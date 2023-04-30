@@ -19,5 +19,5 @@ class Consumidor(models.Model):
     Nombre = models.CharField(max_length=100)
 
 class Restaurante(models.Model):
-    Nombre_Marca = models.CharField(max_length=100)
+    Nombre_Marca = models.CharField(max_length=100,unique=True)
     ubicacion = models.CharField(max_length=100)
