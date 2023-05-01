@@ -26,11 +26,12 @@
                             <a><button type="submit" class="btn"
                                 style="background-color: #050d21; color: white; align-self: center;">Search</button></a>
                         </form>
-                    </div>
+                    </div> 
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#" style="color: white;">Home</a>
                 </li>
+                {% if user.is_authenticated %}   
                 <li class="nav-item">
                     <a class="nav-link" href="#" style="color: white;">Profile</a>
                 </li>
@@ -38,8 +39,13 @@
                     <a class="nav-link" href="#" style="color: white;">My Favorites</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: white;">LogOut</a>
+                    <a class="nav-link" href="{% url 'logout' %}" style="color: white;">LogOut</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="color: white;">Iniciar sesión</a>
+                </li>
+                {% endif %}
             </ul>
 
         </div>
