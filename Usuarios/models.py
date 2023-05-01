@@ -20,5 +20,5 @@ class Consumidor(models.Model):
 
 class Restaurante(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='Restaurante', default='')
-    Nombre_Marca = models.CharField(max_length=100)
+    Nombre_Marca = models.CharField(max_length=100,unique=True)
     ubicacion = models.CharField(max_length=100)
