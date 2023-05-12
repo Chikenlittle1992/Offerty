@@ -2,11 +2,11 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from . import views
-from django.urls import path,include
+from django.urls import path, include
 
 urlpatterns = [
     path('edit_profile',views.edit_profile,name='edit_profile'),
-    path('busqueda/', views.barraBusqueda),
+    path('busqueda/', views.barraBusqueda, name='busqueda'),
     path("", views.consumidor_home, name='consumidor-home'),
     path("restaurante/", views.restaurante_home, name="restaurante-home"),
     path("login/", views.LoginView.as_view(), name="login"),

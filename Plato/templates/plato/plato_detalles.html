@@ -58,24 +58,28 @@
                     <div class="card-body">
                         <div>
                             <br>
-                            <p>Looking for {{ searchTerm }} </p>
+                            <h1>{{plato.name}}</h1>
                             <br>
+                            <img src="{{ plato.image.url }}" class="card-img-top h-100" alt="Imagen comida">
+
+                            <p>Categoría: {{plato.category}}</p>
+
+                            <p>Restaurante: {{plato.restaurant}}</p>
+
+                            <p>Descripción: {{plato.description}}</p>
+
+                            <h2>Reseñas</h2>
                             <div class="row">
-                                {% for plato in platos %}
+                                {% for reseña in reseñas %}
                                 <div class="col-md-4">
                                     <div class="card">
                                         <br>
-                                        <div style="height: 250px;">
-                                            <img src="{{ plato.image.url }}" class="card-img-top h-100"
-                                                alt="Imagen comida">
-                                        </div>
-                                        <br>
                                         <div class="card-body">
-                                            <a href="{% url 'Plato:platoDetalles' plato.id %}">
-                                                <h5 class="card-title">{{plato.name}}</h5>
-                                            </a>
+                                            <h5 class="card-title">{{ reseña.consumidor }}</h5>
+                                            <p class="card-text">Calificación: {{ reseña.puntaje_calificacion }}
+                                                estrellas</p>
                                             <p class="card-text">{{plato.description}}</p>
-                                            <h7 style="color: grey" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                                            <h7 style="color: grey" ;>{{ reseña.fecha }}</h7>
                                         </div>
                                     </div>
                                     <br>
@@ -86,6 +90,7 @@
                             <div class="row">
                                 {% endif %}
                                 {% endfor %}
+                                <a href="{% url 'Calificaciones:crearReseñaPlato' plato.id %}">Reseñar plato</a>
                             </div>
                             <br>
 

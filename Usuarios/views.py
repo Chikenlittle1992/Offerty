@@ -46,7 +46,7 @@ class ConsumidorSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('consumidor-home')
+        return redirect('busqueda')
 
 class RestauranteSignUpView(CreateView):
     model = User
@@ -60,7 +60,7 @@ class RestauranteSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('restaurante-home')
+        return redirect('busqueda')
 
 class LoginView(auth_views.LoginView):
     form_class = LoginForm
@@ -72,10 +72,10 @@ class LoginView(auth_views.LoginView):
     def get_success_url(self):
         user = self.request.user
         if user.is_authenticated:
-            if user.is_consumidor:
-                return reverse('consumidor-home')
-            elif user.is_restaurante:
-                return reverse('restaurante-home')
+            #if user.is_consumidor:
+            return reverse('busqueda')
+            #elif user.is_restaurante:
+                #return reverse('restaurante-home')
         else: 
             return reverse('login')
 

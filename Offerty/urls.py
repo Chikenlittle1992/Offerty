@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from Usuarios import views as usuarioViews
+from Plato import views as platoviews
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('Usuarios.urls')),
-    path('',usuarioViews.barraBusqueda),
-]
+    path('', usuarioViews.barraBusqueda),
+    path('calificaciones/', include('Calificaciones.urls')),
+    path('plato/', include('Plato.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
