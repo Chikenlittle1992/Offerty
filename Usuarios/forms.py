@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
 from django.db import transaction
 from django import forms
 from .models import User, Consumidor, Restaurante
@@ -53,11 +53,7 @@ class LoginForm(AuthenticationForm):
 
 
 class EditProfileForm(forms.ModelForm):
-    if(User.is_Consumidor==True):
-        print(11)
-    if(User.is_Restaurante==True):
-        print(11)
-    email = forms.EmailField(max_length=254)    
+    email = forms.EmailField(max_length=254)
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email'] 
