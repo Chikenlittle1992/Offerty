@@ -39,7 +39,7 @@
                 </li>
                 {% if user.is_Consumidor %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: white;">My Favorites</a>
+                    <a class="nav-link" href="{% url 'Ofertas:favoritos' %}" style="color: white;">My Favorites</a>
                 </li>
                 {% elif user.is_Restaurante %}
                 <li class="nav-item">
@@ -65,7 +65,7 @@
         <div class="row">
             {% for plato in ofertas %}
             <div class="col-md-4">
-                <div class="card" style="background-color: gold;color: white;">
+                <div class="card" style="background-color: #fff159; color: white; display: flex; text-align: center;">
                     <br>
                     <div style="height: 250px;">
                         <img src="{{ plato.image.url }}" class="card-img-top h-100" alt="Imagen comida">
@@ -75,12 +75,19 @@
                         <a style="color:#001f3f;" href="{% url 'Plato:platoDetalles' plato.id %}">
                             <h5 class="card-title">{{plato.name}}</h5>
                         </a>
-                        <p class="card-text">{{plato.description}}</p>
-                        <h7 style="color:#333333" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                        <p style=" -webkit-text-stroke: 0.5px black; text-stroke: 0.5px black;" class="card-text">
+                            {{plato.description}}</p>
+                        <h7 style="color:#333333;">{{plato.restaurant.Nombre_Marca}}</h7>
                         </br>
                         <h7 style="color: black;"><s>${{plato.precio}}</s></h7>
                         <h7 style="color: black;">${{plato.precioNuevo}}</h7>
                     </div>
+                    {% if user.is_Consumidor %}
+                    <form action="{% url 'Ofertas:ofertaFavoritos' plato.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-info">Agregar a favoritos</button>
+                    </form>
+                    {% endif %}
                 </div>
                 <br>
                 <br>
@@ -137,8 +144,8 @@
     </div>
     {% endif %}
     {% block content %}
-    {% endblock %}  
-                        
+    {% endblock %}
+
 </body>
 
 </html>

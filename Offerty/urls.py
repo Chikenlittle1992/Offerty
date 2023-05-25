@@ -26,4 +26,5 @@ urlpatterns = [
     path('', usuarioViews.barraBusqueda),
     path('calificaciones/', include('Calificaciones.urls')),
     path('plato/', include('Plato.urls')),
+    path('ofertas/', include('Ofertas.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
