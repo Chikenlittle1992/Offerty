@@ -1,12 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import plato, Oferta
-from django.db.models import Prefetch
+from django.db.models import Sum
 from Calificaciones.models import ReseñaOferta, ReseñaPlato
-from Calificaciones.views import crearNuevaReseñaPlato
 from Usuarios.models import Restaurante
-from .forms import PlatoForm
 from .forms import PlatoForm, OfertaForm
-from django.contrib.auth.decorators import login_required
 from .models import plato, Oferta
 # Create your views here.
 
@@ -18,9 +14,15 @@ def platoDetalles(request, plato_id):
         reseñasPlato = ReseñaOferta.objects.filter(oferta=platoDetalle).order_by('-fecha')
     if not platoEsOferta:
         reseñasPlato = ReseñaPlato.objects.filter(plato=platoDetalle).order_by('-fecha')
+    
+    sumaCalificacionesPlato = reseñasPlato.aggregate(total=Sum('puntaje_calificacion'))['total']
+    numeroReseñasPlato = reseñasPlato.count()
+    promedioCalificacionesPlato = sumaCalificacionesPlato / numeroReseñasPlato if numeroReseñasPlato > 0 else None
+
     return render(request, 'plato/plato_detalles.html', {
             'plato': platoDetalle,
-            'reseñas': reseñasPlato
+            'reseñas': reseñasPlato,
+            'promedioCalificaciones': promedioCalificacionesPlato,
         })
 
 
