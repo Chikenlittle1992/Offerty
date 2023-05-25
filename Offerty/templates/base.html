@@ -61,6 +61,37 @@
     <br>
     {% if platos %}
     <div class="container mb-3">
+        {% if ofertas %}
+        <div class="row">
+            {% for plato in ofertas %}
+            <div class="col-md-4">
+                <div class="card" style="background-color: gold;color: white;">
+                    <br>
+                    <div style="height: 250px;">
+                        <img src="{{ plato.image.url }}" class="card-img-top h-100" alt="Imagen comida">
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <a style="color:#001f3f;" href="{% url 'Plato:platoDetalles' plato.id %}">
+                            <h5 class="card-title">{{plato.name}}</h5>
+                        </a>
+                        <p class="card-text">{{plato.description}}</p>
+                        <h7 style="color:#333333" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                        </br>
+                        <h7 style="color: black;"><s>${{plato.precio}}</s></h7>
+                        <h7 style="color: black;">${{plato.precioNuevo}}</h7>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+        </div>
+        <div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
         <div class="row">
             <div>
                 <div class="card" style="display: flex; text-align: center;">
@@ -84,6 +115,8 @@
                                             </a>
                                             <p class="card-text">{{plato.description}}</p>
                                             <h7 style="color: grey" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                                            </br>
+                                            <h7 style="color: black;">${{plato.precio}}</h7>
                                         </div>
                                     </div>
                                     <br>

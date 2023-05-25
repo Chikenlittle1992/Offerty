@@ -17,11 +17,13 @@ from django.db.models import Q
 def barraBusqueda(request):
     searchTerm = request.GET.get('searchService')
     platos = modelosPlato.plato.objects.all()
+    ofertas = []
     if searchTerm:
         platos = platos.filter(Q(name__icontains=searchTerm) | Q(category__icontains=searchTerm)| Q(restaurant__Nombre_Marca__icontains=searchTerm))
     else:
         platos = modelosPlato.plato.objects.all()
-    return render(request, 'base.html', {'searchTerm': searchTerm, 'platos': platos})
+        ofertas = modelosPlato.Oferta.objects.all()
+    return render(request, 'base.html', {'searchTerm': searchTerm,'ofertas': ofertas,'platos': platos})
 
 
 @login_required

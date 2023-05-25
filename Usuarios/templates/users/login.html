@@ -9,15 +9,21 @@
         <title>Login</title>
     </head>
     <body>
-        <h1>Iniciar sesion</h1>
-        <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Login">
-        </form>
-        <p>Aun no te has registrado?</p>
-        <a href="{% url 'consumidor-signup' %}">Registro para consumidores</a>
-        <a href="{% url 'restaurante-signup' %}">Registro para restaurantes</a>
+        
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <div style="max-width: 400px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
+                <h1>Iniciar sesion</h1>
+              <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Login">
+              </form>
+              <p>Aún no te has registrado?</p>
+              <a href="{% url 'consumidor-signup' %}">Registro para consumidores</a>
+              </br>
+              <a href="{% url 'restaurante-signup' %}">Registro para restaurantes</a>
+            </div>
+          </div>
     </body>
     {% endblock content %}
 </html>
