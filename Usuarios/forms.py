@@ -53,7 +53,6 @@ class LoginForm(AuthenticationForm):
 
 
 class EditProfileForm(forms.ModelForm):
-    email = forms.EmailField(max_length=254)
     class Meta:
         model = User
-        fields = ['email'] 
+        fields = ['email']

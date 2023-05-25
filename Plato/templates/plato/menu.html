@@ -151,6 +151,8 @@
                         {{ formO.precioNuevo }}
                     </div>
                 </div>
+
+
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
@@ -210,6 +212,9 @@
                                         <button  class="btn btn-primary" style="margin-right: 10px;background-color: #001f3f;">Editar
                                             Oferta</button>
                                     </a>
+                                    <a href="{% url 'Plato:delete_oferta' plato.id %}" >
+                                        <button class="btn btn-primary" style="margin-right: 10px;background-color: red;">Eliminar</button>
+                                    </a>
                                 </div>
                             </div>
                             <br>
@@ -243,6 +248,9 @@
                                     <a href="{% url 'Plato:editar_plato' plato.id %}">
                                         <button class="btn btn-primary" style="margin-right: 10px;">Editar
                                             Plato</button>
+                                    </a>
+                                    <a href="{% url 'Plato:delete_plato' plato.id %}" >
+                                        <button class="btn btn-primary" style="margin-right: 10px;background-color: red;">Eliminar</button>
                                     </a>
                                 </div>
                             </div>

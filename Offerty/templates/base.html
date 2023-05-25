@@ -37,12 +37,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'edit_profile' %}" style="color: white;">Profile</a>
                 </li>
+                {% if user.is_Consumidor %}
                 <li class="nav-item">
                     <a class="nav-link" href="#" style="color: white;">My Favorites</a>
                 </li>
+                {% elif user.is_Restaurante %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Plato:menu' %}" style="color: white;">My Menu</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}" style="color: white;">LogOut</a>
                 </li>

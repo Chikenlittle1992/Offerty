@@ -9,4 +9,6 @@ urlpatterns = [
     path('menu/', views.crear_plato_oferta, name='menu'),
     path('editar-plato/<int:plato_id>/', views.editPlato, name='editar_plato'),
     path('editar-oferta/<int:plato_id>/', views.editOferta, name='editar_oferta'),
+    path('delete_plato/<int:plato_id>', views.eliminarPLato,name="delete_plato"),
+    path('delete_oferta/<int:plato_id>', views.eliminarOferta,name="delete_oferta"),
 ]
