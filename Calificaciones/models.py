@@ -11,6 +11,9 @@ class Reseña(models.Model):
     puntaje_calificacion = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     contenido_comentario = models.CharField(max_length=255, blank=True)
 
+    def __str__(self):
+        return f"{self.puntaje_calificacion}"
+
 class ReseñaRestaurante(Reseña):
     restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
 

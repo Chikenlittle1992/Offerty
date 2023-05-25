@@ -31,6 +31,9 @@
 
                             <h2>Reseñas</h2>
                             <div class="row">
+                                {% if not reseñas %}
+                                <p>No hay reseñas en el momento.</p>
+                                {% endif %}
                                 {% for reseña in reseñas %}
                                 <div class="col-md-4">
                                     <div class="card">
@@ -39,7 +42,7 @@
                                             <h5 class="card-title">{{ reseña.consumidor }}</h5>
                                             <p class="card-text">Calificación: {{ reseña.puntaje_calificacion }}
                                                 estrellas</p>
-                                            <p class="card-text">{{plato.description}}</p>
+                                            <p class="card-text">{{ reseña.contenido_comentario }}</p>
                                             <h7 style="color: grey" ;>{{ reseña.fecha }}</h7>
                                         </div>
                                     </div>
@@ -57,7 +60,7 @@
                             </div>
                             <br>
 
-                          
+
 </body>
 
 </html>

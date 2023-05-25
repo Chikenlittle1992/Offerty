@@ -1,10 +1,14 @@
 from django import forms
-from Calificaciones.models import ReseñaApp, ReseñaRestaurante, ReseñaPlato
+from Calificaciones.models import ReseñaApp, ReseñaRestaurante, ReseñaPlato, ReseñaOferta
 
 class CreacionNuevaReseñaPlato(forms.ModelForm):
-    consumidor = forms.CharField(widget=forms.HiddenInput())
-    plato = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = ReseñaPlato
-        fields = ("consumidor", "puntaje_calificacion", "contenido_comentario", "plato")
+        fields = ("puntaje_calificacion", "contenido_comentario")
+
+class CreacionNuevaReseñaOferta(forms.ModelForm):
+
+    class Meta:
+        model = ReseñaOferta
+        fields = ("puntaje_calificacion", "contenido_comentario")

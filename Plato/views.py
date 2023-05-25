@@ -1,14 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import plato, Oferta
 from django.db.models import Prefetch
 from Calificaciones.models import ReseñaOferta, ReseñaPlato
 from Calificaciones.views import crearNuevaReseñaPlato
 from Usuarios.models import Restaurante
 from .forms import PlatoForm
-from django.shortcuts import render, redirect
-from django.shortcuts import render, redirect
 from .forms import PlatoForm, OfertaForm
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import plato, Oferta
 # Create your views here.
@@ -16,11 +13,11 @@ from .models import plato, Oferta
 def platoDetalles(request, plato_id):
     reseñasPlato = ''
     platoDetalle = get_object_or_404(plato, pk=plato_id)
-    existe = Oferta.objects.filter(pk=platoDetalle.pk).exists()
-    if existe:
-        reseñasPlato = ReseñaOferta.objects.filter(oferta=platoDetalle).order_by('fecha')
-    if not existe:
-        reseñasPlato = ReseñaPlato.objects.filter(plato=platoDetalle).order_by('fecha')
+    platoEsOferta = Oferta.objects.filter(pk=platoDetalle.pk).exists()
+    if platoEsOferta:
+        reseñasPlato = ReseñaOferta.objects.filter(oferta=platoDetalle).order_by('-fecha')
+    if not platoEsOferta:
+        reseñasPlato = ReseñaPlato.objects.filter(plato=platoDetalle).order_by('-fecha')
     return render(request, 'plato/plato_detalles.html', {
             'plato': platoDetalle,
             'reseñas': reseñasPlato
