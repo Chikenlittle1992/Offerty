@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mb-3">
+    <div class="row">
+        <div>
+            <div class="card" style="width: 100%; height: 120%;">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="username" class=" col-form-label">Nombre de usuario:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="username" name="username" required value="{{ user.username }}"
+                                class="form-control"><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="email" class=" col-form-label">Email:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="email" id="email" name="email" value="{{ user.email }}"
+                                class="form-control"><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="Nombre_Marca" class=" col-form-label">Nombre de marca:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="Nombre_Marca" name="Nombre_Marca" value="{{ restaurante.Nombre_Marca }}"
+                                class="form-control"><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="ubicacion" class=" col-form-label">Ubicación:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="ubicacion" name="ubicacion" value="{{ restaurante.ubicacion }}"
+                                class="form-control"><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="bio" class=" col-form-label">Bio:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="bio" name="bio" value="{{ restaurante.bio }}"
+                                class="form-control"><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="images" class=" col-form-label">Imagen de perfil:</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="file" id="images" name="images" required class="form-control"><br>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar información</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

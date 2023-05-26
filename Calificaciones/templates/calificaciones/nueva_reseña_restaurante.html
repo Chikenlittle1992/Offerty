@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñar</title>
+</head>
+
+<body>
+    {% if user.is_Consumidor %}
+    <div style="display: flex; justify-content: center;">
+        <div
+            style="max-width: 2000px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
+            <h1>Reseñar {{ restaurante.Nombre_Marca }}</h1>
+            <form action="{% url 'Calificaciones:crearReseñaRestaurante' restaurante.Nombre_Marca %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button>
+                    Reseñar
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <br>
+    <div class="container mb-3">
+        <div class="row">
+            <div>
+                <div class="card" style="display: flex; text-align: center;">
+                    <div class="card-body">
+                        <div>
+                            <h2>Reseñas {{ restaurante.Nombre_Marca }}</h2>
+                            <p>Promedio calificaciones: {{ promedioCalificaciones }} estrellas</p>
+                            <div class="row">
+                                {% if not reseñas %}
+                                <p>No hay reseñas en el momento.</p>
+                                {% endif %}
+                                {% for reseña in reseñas %}
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <br>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ reseña.consumidor }}</h5>
+                                            <p class="card-text">Calificación: {{ reseña.puntaje_calificacion }}
+                                                estrellas</p>
+                                            <p class="card-text">{{ reseña.contenido_comentario }}</p>
+                                            <h7 style="color: grey" ;>{{ reseña.fecha }}</h7>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+                                {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+                            </div>
+                            <div class="row">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <br>
+
+</body>
+{% endblock content %}
+
+</html>

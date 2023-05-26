@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+</head>
+
+<body>
+    <div class="container mb-3">
+        <div class="row">
+            <div>
+                <div class="card" style="display: flex; text-align: center;">
+                    <h1>Ofertas favoritas</h1>
+                    <div class=" card-body">
+                        <div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                {% for oferta in ofertasFavoritas %}
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <br>
+                                        <div style="height: 250px;">
+                                            <img src="{{ oferta.image.url }}" class="card-img-top h-100"
+                                                alt="Imagen comida">
+                                        </div>
+                                        <br>
+                                        <div class="card-body">
+                                            <a href="{% url 'Plato:platoDetalles' oferta.id %}">
+                                                <h5 class="card-title">{{oferta.name}}</h5>
+                                            </a>
+                                            <p class="card-text">{{oferta.description}}</p>
+                                            <h7 style="color: grey" ;>{{oferta.restaurant.Nombre_Marca}}</h7>
+                                            </br>
+                                            <h7 style="color: black;">${{oferta.precio}}</h7>
+                                        </div>
+                                        <form action="{% url 'Ofertas:eliminarFavorito' oferta.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn btn-danger">Eliminar de favoritos</button>
+                                        </form>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+                                {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+                            </div>
+                            <div class="row">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+</html>

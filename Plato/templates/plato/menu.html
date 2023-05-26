@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Ventana modal para crear plato -->
+<div class="modal fade" id="platoModal" tabindex="-1" role="dialog" aria-labelledby="platoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="platoModalLabel">Crear plato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="name" class=" col-form-label">Nombre:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="image" class=" col-form-label">Imagenes:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.image }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="category" class=" col-form-label">Categoria:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.category }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="description" class=" col-form-label">Descripcion:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.description }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="restaurant" class=" col-form-label">Restaurante:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.restaurant }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="precio" class=" col-form-label">Precio:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ form.precio }}
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Ventana modal para crear oferta -->
+<div class="modal fade" id="ofertaModal" tabindex="-1" role="dialog" aria-labelledby="platoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="platoModalLabel">Crear oferta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="name" class=" col-form-label">Nombre:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ formO.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="image" class=" col-form-label">Imagenes:</label>
+                        </div>
+                        <div class="col-9">
+                            {{ formO.image }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="category" class=" col-form-label">Categoria:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.category }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="description" class=" col-form-label">Descripcion:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.description }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="restaurant" class=" col-form-label">Restaurante:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.restaurant }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="precio" class=" col-form-label">Precio:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.precio }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="fecha_limite" class=" col-form-label">Fecha Limite:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.fecha_limite }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="precioNuevo" class=" col-form-label">Precio Nuevo:</label>
+                    </div>
+                    <div class="col-9">
+                        {{ formO.precioNuevo }}
+                    </div>
+                </div>
+
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#platoModal').on('show.bs.modal', function () {
+            // Aquí puedes cargar el contenido del formulario de plato si es necesario
+        });
+
+        $('#ofertaModal').on('show.bs.modal', function () {
+            // Aquí puedes cargar el contenido del formulario de oferta si es necesario
+        });
+    });
+</script>
+</br>
+</br>
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" style="margin-right: 10px;" data-toggle="modal"
+        data-target="#platoModal">Crear plato</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ofertaModal">Crear oferta</button>
+</div>
+</br>
+</br>
+<div class="container mb-3">
+    <div class="row">
+        <div>
+            <div class="card" style="display: flex; text-align: center;">
+                <div class="card-body">
+                    <br>
+                    <br>
+                    <div class="row">
+                        {% for plato in consulta.ofertass %}
+                        <div class="col-md-4">
+                            <div class="card" style="background-color: gold;color: white;">
+                                <br>
+                                <div style="height: 250px;">
+                                    <img src="{{ plato.image.url }}" class="card-img-top h-100" alt="Imagen comida">
+                                </div>
+                                <br>
+                                <div class="card-body">
+                                    <a style="color:#001f3f;" href="{% url 'Plato:platoDetalles' plato.id %}">
+                                        <h5 class="card-title">{{plato.name}}</h5>
+                                    </a>
+                                    <p class="card-text">{{plato.description}}</p>
+                                    <h7 style="color:#333333" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                                    </br>
+                                    <h7 style="color: black;"><s>${{plato.precio}}</s></h7>
+                                    <h7 style="color: black;">${{plato.precioNuevo}}</h7>
+                                    </br>
+                                    <a href="{% url 'Plato:editar_oferta' plato.id %}">
+                                        <button  class="btn btn-primary" style="margin-right: 10px;background-color: #001f3f;">Editar
+                                            Oferta</button>
+                                    </a>
+                                    <a href="{% url 'Plato:delete_oferta' plato.id %}" >
+                                        <button class="btn btn-primary" style="margin-right: 10px;background-color: red;">Eliminar</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        {% for plato in consulta.platoss %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                <br>
+                                <div style="height: 250px;">
+                                    <img src="{{ plato.image.url }}" class="card-img-top h-100" alt="Imagen comida">
+                                </div>
+                                <br>
+                                <div class="card-body">
+                                    <a href="{% url 'Plato:platoDetalles' plato.id %}">
+                                        <h5 class="card-title">{{plato.name}}</h5>
+                                    </a>
+                                    <p class="card-text">{{plato.description}}</p>
+                                    <h7 style="color: grey" ;>{{plato.restaurant.Nombre_Marca}}</h7>
+                                    </br>
+                                    <h7 style="color: black;">$</h7>
+                                    <h7 style="color: black;">{{plato.precio}}</h7>
+                                    </br>
+                                    <a href="{% url 'Plato:editar_plato' plato.id %}">
+                                        <button class="btn btn-primary" style="margin-right: 10px;">Editar
+                                            Plato</button>
+                                    </a>
+                                    <a href="{% url 'Plato:delete_plato' plato.id %}" >
+                                        <button class="btn btn-primary" style="margin-right: 10px;background-color: red;">Eliminar</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

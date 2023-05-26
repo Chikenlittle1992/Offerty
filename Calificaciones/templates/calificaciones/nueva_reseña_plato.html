@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñar</title>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center;">
+        <div
+            style="max-width: 2000px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
+            <h1>Reseñar {{ plato.name }}</h1>
+            <form action="{% url 'Calificaciones:crearReseñaPlato' plato.id %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button>
+                    Reseñar
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+</html>
