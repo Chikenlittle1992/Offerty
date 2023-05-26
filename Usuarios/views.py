@@ -69,12 +69,12 @@ def edit_profile_consumidor(request):
     return render(request, 'edit_profile_consumidor.html', {'user': request.user, 'consumidor': consumidor})
 
 @login_required
-def profile_restaurante(request):
+def profile_consumidor(request):
     consumidor = Consumidor.objects.get(user = request.user)
     return render(request, 'profile_consumidor.html', {'user':request.user, 'consumidor':consumidor})
 
 @login_required
-def profile_consumidor(request):
+def profile_restaurante(request):
     restaurante = Restaurante.objects.get(user = request.user)
     return render(request, 'profile_restaurante.html', {'user':request.user, 'restaurante':restaurante})
 
